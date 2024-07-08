@@ -17,20 +17,25 @@ export class CoffeesService {
   }
 
   findOne(id: string) {
-    return this.coffees.find(item => item.id === +id)
+    return this.coffees.find(item => item.id === +id) || 'Coffee not found'
   }
 
-  create(createCoffeeDto: any){
+  create(createCoffeeDto: any) {
     this.coffees.push(createCoffeeDto);
   }
 
-  update(id: string, updateCoffeeDto: any)
-  {
-    const coffee = this.coffees.find(item => item.id === +id)
+  update(id: string, updateCoffeeDto: any) {
+    const existingCoffee = this.findOne(id);
+    if (existingCoffee) {
+      // update the existing entity
+    }
+
   }
 
-  remove(id: string)
-  {
-    const coffee = this.coffees.find(item => item.id === +id)
+  remove(id: string) {
+    const coffeeIndex = this.coffees.findIndex(item => item.id === +id);
+    if (coffeeIndex >= 0) {
+      this.coffees.splice(coffeeIndex, 1);
+    }
   }
 }

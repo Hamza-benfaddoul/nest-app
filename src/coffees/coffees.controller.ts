@@ -6,13 +6,12 @@ import {
   Param,
   Patch,
   Post,
-  Query,
 } from '@nestjs/common'
 import { CoffeesService } from './coffees.service'
 
 @Controller('coffees')
 export class CoffeesController {
-  constructor(private readonly coffeesService: CoffeesService) {}
+  constructor(private readonly coffeesService: CoffeesService) { }
 
   @Get()
   findAll() {
@@ -26,7 +25,7 @@ export class CoffeesController {
 
   @Post()
   create(@Body() body) {
-    return this.create(body)
+    return this.coffeesService.create(body)
   }
 
   @Patch(':id')
